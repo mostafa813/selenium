@@ -65,11 +65,12 @@ from datetime import datetime
 
 #add new setad 1
 
-names = [fake.unique.user_name() for i in range(3)]
+names = [fake.unique.user_name() for i in range(4)]
 fake_name=names[0]
 fake_username=names[1]
 fake_name_manager=names[2]
-
+fake_username_manager=names[3]
+driver.implicitly_wait(4)
 
 driver.get("https://setad.iranrahyaft.ir/signin")
 driver.maximize_window()
@@ -97,7 +98,7 @@ name2 = driver.find_element("xpath" , "(//input[contains(@class,'MuiInputBase-in
 # fake_name_manager=fake.unique.first_name()
 name2.send_keys(fake_name_manager)
 user2 = driver.find_element("xpath" , "(//label[text()='نام کاربری'])[2]/following::input")
-fake_username_manager=fake.first_name()
+# fake_username_manager=fake.first_name()
 user2.send_keys(fake_username_manager)
 passw = driver.find_element("name" , "password")
 passw.send_keys("TEST")
@@ -130,7 +131,7 @@ sleep(1)
 driver.find_element("xpath","//p[text()='خروج']").click()
 sleep(2)
 
-driver.find_element("id" , ":r0:").send_keys(fake_username)
+driver.find_element("id" , ":r0:").send_keys(fake_username_manager)
 sleep(1)
 driver.find_element("id" , ":r1:").send_keys("TEST")
 sleep(4)
