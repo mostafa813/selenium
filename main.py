@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 
 
-names = [fake.unique.user_name() for i in range(4)]
+names = [fake.user_name() for i in range(4)]
 fake_name=names[0]
 fake_username=names[1]
 fake_name_manager=names[2]
@@ -46,7 +46,7 @@ def add_new_admin():
     sleep(1)
     driver.find_element("xpath" , "//p[text()='مدیریت ادمین ها']").click()
     sleep(1)
-    driver.find_element("xpath", "(//div[@class='muirtl-dufqpb']//p)[3]").click()
+    driver.find_element("xpath", "//p[text()='افزودن']").click()
     sleep(1)
     name0 = driver.find_element("xpath","//label[text()='نام']/following::input")
     name0.send_keys("mostafa_kashi")
@@ -247,5 +247,50 @@ def test_not_reject_request():
     # text=driver.find_element("id","notistack-snackbar").text
     # assert text=="با موفقیت رد شد"
 
+def test_approve_license_request_by_setad():
+    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.maximize_window()
+    sleep(2)
+    user0 =  driver.find_element("id" , ":r0:")
+    user0.send_keys("mohsen-setad-manager")
+    passw0 = driver.find_element("id" , ":r1:")
+    passw0.send_keys("qazwsx12")
+    sleep(2)
+    actions.send_keys(Keys.ENTER).perform()
+    sleep(5)
+    driver.find_element("xpath" , "//button[contains(@class,'MuiButtonBase-root toggle-btn')]").click()
+    sleep(3)
+    driver.find_element("xpath","//p[text()='لیست درخواست های مجوز ']").click()
+    sleep(1)
+    driver.find_element("xpath" , "//p[text()='تائید']").click()
+    sleep(3)
+    driver.find_element("xpath","//p[text()='بله']").click()
+    sleep(4)
+    toast = driver.find_element("css selector", ".SnackbarContainer-bottom").text
+    assert toast == "با موفقیت تایید شد"
+    sleep(20)
 
-test_not_accept_request()
+def test_reject_license_request_by_setad():
+    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.maximize_window()
+    sleep(2)
+    user0 = driver.find_element("id", ":r0:")
+    user0.send_keys("mohsen-setad-manager")
+    passw0 = driver.find_element("id", ":r1:")
+    passw0.send_keys("qazwsx12")
+    sleep(2)
+    actions.send_keys(Keys.ENTER).perform()
+    sleep(5)
+    driver.find_element("xpath", "//button[contains(@class,'MuiButtonBase-root toggle-btn')]").click()
+    sleep(3)
+    driver.find_element("xpath", "//p[text()='لیست درخواست های مجوز ']").click()
+    sleep(1)
+    driver.find_element("xpath", "//p[text()='تائید']").click()
+    sleep(3)
+    driver.find_element("xpath", "//p[text()='بله']").click()
+    sleep(4)
+    toast = driver.find_element("css selector", ".SnackbarContainer-bottom").text
+    assert toast == "با موفقیت تایید شد"
+    sleep(20)
+
+add_new_setad_1()
