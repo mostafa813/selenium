@@ -49,9 +49,11 @@ def add_new_admin():
     driver.find_element("xpath", "//p[text()='افزودن']").click()
     sleep(1)
     name0 = driver.find_element("xpath","//label[text()='نام']/following::input")
-    name0.send_keys("mostafa_kashi")
+    fake_name = names[0]
+    name0.send_keys(fake_name)
     user = driver.find_element("xpath","//label[text()='نام کاربری']/following::input")
-    user.send_keys("mostafa10")
+    fake_username = names[1]
+    user.send_keys(fake_username)
     passw1 = driver.find_element("xpath" , "//label[text()='رمز عبور']/following::input")
     passw1.send_keys("kashi24M")
     email = driver.find_element("xpath","//label[text()='ایمیل']/following::input")
@@ -64,7 +66,6 @@ def add_new_admin():
     sleep(2)
     driver.find_element("xpath" , "//p[text()='مدیریت ادمین ها']").click()
     sleep(1)
-
     driver.find_element("xpath","//div[contains(@class,'MuiSelect-select MuiTablePagination-select')]").click()
     driver.find_element("xpath","//li[@data-value='-1']").click()
     sleep(3)
@@ -104,9 +105,7 @@ def add_new_setad_1():
     sleep(1)
     driver.find_element("xpath"  , "//div[@id='__next']/div[1]/div[2]/main[1]/form[1]/div[3]/button[2]/div[1]/p[1]").click()
     sleep(5)
-
-    toast = driver.find_element("css selector", ".SnackbarContainer-bottom").text
-
+    toast=driver.find_element("id","notistack-snackbar").text
     assert toast == "با موفقیت انجام شد"
     sleep(1)
     driver.find_element("xpath" , "//p[text()='لیست ستاد ها']").click()
@@ -128,7 +127,6 @@ def add_new_setad_1():
     sleep(5)
 
 
-#add new setad 2
 
 def add_new_setad():
     driver.get("https://setad.iranrahyaft.ir/signin")
@@ -142,24 +140,43 @@ def add_new_setad():
     actions.send_keys(Keys.ENTER).perform()
     sleep(5)
     driver.find_element("xpath" , "//button[contains(@class,'MuiButtonBase-root toggle-btn')]").click()
-    sleep(1)
+    sleep(5)
     driver.find_element("xpath" , "//p[text()='لیست ستاد ها']").click()
     sleep(1)
     driver.find_element("xpath" , "//p[text()='افزودن']").click()
     sleep(1)
     name1 = driver.find_element("xpath" , "//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')]")
-    name1.send_keys("ستاد تست")
+    name1.send_keys(fake_name)
     user1 = driver.find_element("xpath" , "(//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')])[2]")
-    user1.send_keys("test_me9")
+    user1.send_keys(fake_username)
     name2 = driver.find_element("xpath" , "(//input[contains(@class,'MuiInputBase-input MuiOutlinedInput-input')])[3]")
-    name2.send_keys("ستاد تست")
+    name2.send_keys(fake_name_manager)
     user2 = driver.find_element("xpath" , "(//label[text()='نام کاربری'])[2]/following::input")
-    user2.send_keys("test_me2")
+    user2.send_keys(fake_username_manager)
     passw = driver.find_element("name" , "password")
     passw.send_keys("TEST")
     sleep(3)
     actions.send_keys(Keys.ENTER).perform()
-    sleep(6)
+    sleep(3)
+    toast=driver.find_element("id","notistack-snackbar").text
+    assert toast == "با موفقیت انجام شد"
+    sleep(1)
+    driver.find_element("xpath" , "//p[text()='لیست ستاد ها']").click()
+    sleep(1)
+    driver.find_element("xpath" , "//div[contains(@class,'MuiSelect-select MuiTablePagination-select')]").click()
+    sleep(1)
+    driver.find_element("xpath" , "//li[text()='همه']").click()
+    dom = driver.page_source
+    assert fake_name in dom
+    sleep(1)
+    driver.find_element("xpath","//p[text()='خروج']").click()
+    sleep(2)
+    driver.find_element("id" , ":r0:").send_keys(fake_username_manager)
+    sleep(1)
+    driver.find_element("id" , ":r1:").send_keys("TEST")
+    sleep(4)
+    driver.find_element("xpath" , "//button[contains(@class,'MuiButtonBase-root MuiButton-root')]").click()
+    sleep(5)
 
 
 
@@ -292,5 +309,7 @@ def test_reject_license_request_by_setad():
     toast = driver.find_element("css selector", ".SnackbarContainer-bottom").text
     assert toast == "با موفقیت تایید شد"
     sleep(20)
+
+
 
 add_new_setad_1()
