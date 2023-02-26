@@ -24,7 +24,7 @@ fake_username_manager=names[3]
 
 
 def add_new_admin():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 =  driver.find_element("id" , ":r0:")
@@ -63,7 +63,7 @@ def add_new_admin():
 
 
 def add_new_setad_1():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 = driver.find_element("id" , ":r0:")
@@ -179,7 +179,7 @@ def add_new_setad_1():
 
 
 def test_reject_request():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -201,7 +201,7 @@ def test_reject_request():
 
 
 def test_accept_request():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -222,7 +222,7 @@ def test_accept_request():
 
 
 def test_not_accept_request():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -242,7 +242,7 @@ def test_not_accept_request():
 
 
 def test_not_reject_request():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -258,7 +258,7 @@ def test_not_reject_request():
     # assert text=="با موفقیت رد شد"
 
 def test_approve_license_request_by_setad():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 =  driver.find_element("id" , ":r0:")
@@ -279,7 +279,7 @@ def test_approve_license_request_by_setad():
     sleep(3)
 
 def test_reject_license_request_by_setad():
-    driver.get("https://setad.iranrahyaft.ir/signin")
+    driver.get("https://dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 = driver.find_element("id", ":r0:")
@@ -301,4 +301,46 @@ def test_reject_license_request_by_setad():
 
 
 
-test_not_reject_request()
+
+
+
+def add_new_manager_by_setad():
+    driver.get("https://dashboard.hnaya.app/signin")
+    driver.maximize_window()
+    sleep(2)
+    user0 = driver.find_element("id", ":r0:")
+    user0.send_keys("mohsen-setad-manager")
+    passw0 = driver.find_element("id", ":r1:")
+    passw0.send_keys("qazwsx12")
+    sleep(1)
+    actions.send_keys(Keys.ENTER).perform()
+    sleep(3)
+    driver.find_element("xpath", "//p[text()='لیست منیجر های من']").click()
+    sleep(1)
+    driver.find_element("xpath","//p[text()='لیست منیجر های من']").click()
+    sleep(1)
+    driver.find_element("xpath","//p[text()='افزودن']").click()
+    sleep(1)
+    driver.find_element("name","name").send_keys(fake_name)
+    driver.find_element("name","username").send_keys(fake_username)
+    driver.find_element("name","password").send_keys("TEST")
+    driver.find_element("name","email").send_keys("mostafakashi813@gmail.com")
+    sleep(1)
+    driver.find_element("xpath","//p[text()='MASTER']").click()
+    sleep(1)
+    driver.find_element("xpath","//p[text()='تایید اطلاعات تکمیل شده']").click()
+    sleep(2)
+    text=driver.find_element("id","notistack-snackbar").text
+    assert text=="با موفقیت ثبت شد"
+    sleep(2)
+    driver.find_element("xpath","//div[contains(@class,'MuiSelect-select MuiTablePagination-select')]").click()
+    sleep(1)
+    driver.find_element("xpath","//li[text()='همه']").click()
+    sleep(1)
+    dom = driver.page_source
+    assert fake_username in dom
+    sleep(4)
+
+
+
+add_new_manager_by_setad()
