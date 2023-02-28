@@ -24,7 +24,7 @@ fake_username_manager=names[3]
 
 
 def add_new_admin():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 =  driver.find_element("id" , ":r0:")
@@ -63,7 +63,7 @@ def add_new_admin():
 
 
 def add_new_setad_1():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 = driver.find_element("id" , ":r0:")
@@ -124,7 +124,7 @@ def add_new_setad_1():
 
 
 # def add_new_setad():
-#     driver.get("https://setad.iranrahyaft.ir/signin")
+#     driver.get("https://dev-dashboard.hnaya.app/signin")
 #     driver.maximize_window()
 #     sleep(2)
 #     user0 =  driver.find_element("id" , ":r0:")
@@ -179,7 +179,7 @@ def add_new_setad_1():
 
 
 def test_reject_request():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -201,7 +201,7 @@ def test_reject_request():
 
 
 def test_accept_request():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -222,7 +222,7 @@ def test_accept_request():
 
 
 def test_not_accept_request():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -242,7 +242,7 @@ def test_not_accept_request():
 
 
 def test_not_reject_request():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(1)
     user0 =  driver.find_element("id" , ":r0:")
@@ -258,7 +258,7 @@ def test_not_reject_request():
     # assert text=="با موفقیت رد شد"
 
 def test_approve_license_request_by_setad():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 =  driver.find_element("id" , ":r0:")
@@ -279,7 +279,7 @@ def test_approve_license_request_by_setad():
     sleep(3)
 
 def test_reject_license_request_by_setad():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 = driver.find_element("id", ":r0:")
@@ -305,7 +305,7 @@ def test_reject_license_request_by_setad():
 
 
 def add_new_manager_by_setad():
-    driver.get("https://dashboard.hnaya.app/signin")
+    driver.get("https://dev-dashboard.hnaya.app/signin")
     driver.maximize_window()
     sleep(2)
     user0 = driver.find_element("id", ":r0:")
